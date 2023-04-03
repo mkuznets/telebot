@@ -1,4 +1,4 @@
-module github.com/mkuznets/telebot
+module github.com/mkuznets/telebot/v3
 
 go 1.13
 
