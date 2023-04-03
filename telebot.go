@@ -6,7 +6,7 @@
 //
 //		import (
 //			"time"
-//			tele "github.com/mkuznets/telebot"
+//			tele "github.com/mkuznets/telebot/v3"
 //		)
 //
 //		func main() {
