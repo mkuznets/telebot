@@ -37,6 +37,7 @@ type WebhookEndpoint struct {
 //
 // You can also leave the Listen field empty. In this case it is up to the caller to
 // add the Webhook to a http-mux.
+//
 type Webhook struct {
 	Listen         string   `json:"url"`
 	MaxConnections int      `json:"max_connections"`
@@ -117,6 +118,12 @@ func (h *Webhook) getParams() map[string]string {
 }
 
 func (h *Webhook) Poll(b *Bot, dest chan Update, stop chan struct{}) {
+	if err := b.SetWebhook(h); err != nil {
+		b.OnError(err, nil)
+		close(stop)
+		return
+	}
+
 	// store the variables so the HTTP-handler can use 'em
 	h.dest = dest
 	h.bot = b
